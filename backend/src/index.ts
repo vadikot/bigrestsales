@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import {menuRouter} from "./routes/menuRoute";
+import {categoryRouter} from "./routes/categoryRoute";
 
 const app = express();
 const port = 5050;
@@ -11,7 +12,7 @@ const port = 5050;
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/menu', menuRouter);
-// app.use('/api/category', categoryuRouter);
+app.use('/api/category', categoryRouter);
 
 // Async MongoDB connection
 const startServer = async () => {
