@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/all', async (req: Request, res: Response) => {
     try {
-        const {menuId} = req.body;
+        const {menuId} = req.query;
 
         if (!menuId || typeof menuId !== 'string' || !mongoose.Types.ObjectId.isValid(menuId)) {
             res.status(400).json({message: 'Invalid or missing "menuId"'});

@@ -1,15 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import axios from "axios";
 import {IMenuModel} from "../../model/MenuModel";
 
-const MenuList = () => {
-    const [menus, setMenus] = useState<IMenuModel[]>([]);
+export interface IMenuItemProps {
+    menusPropsValue?: IMenuModel[];
+}
+
+const MenuList: FC<IMenuItemProps> = ({menusPropsValue}) => {
+    const [menus, setMenus] = useState<IMenuModel[]>(menusPropsValue || []);
 
     useEffect(() => {
-        axios.get<IMenuModel[]>('/api/menu/all')
-            .then(response => setMenus(response.data))
-            .catch(error => console.log(error.message))
-    }, [])
+        if (!menusPropsValue) {
+            axios.get<IMenuModel[]>('/api/menu/all')
+                .then(response => setMenus(response.data))
+                .catch(error => console.log(error.message))
+        }
+    }, [menusPropsValue]);
 
     return (
         <div>

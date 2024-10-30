@@ -1,14 +1,14 @@
-import React, {useEffect} from "react";
-import axios from "axios";
-import {MenuList} from "../04_widgets/Menu";
+import React from "react";
+import {MenuWithCategories} from "../04_widgets/MenuWithCategories";
 
 export const App: React.FC = () => {
+
 
     return (
         <div>
             <h1>Hello, Bigrestsales App</h1>
             <p>------------------------------------------------------------------</p>
-            <MenuList/>
+            <MenuWithCategories/>
         </div>
     );
 }
