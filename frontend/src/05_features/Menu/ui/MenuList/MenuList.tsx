@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {IMenuModel} from "../../model/MenuModel";
-import {CategoryList} from "../../../CategoryList";
+import {CategoryList} from "../../../Category";
 
 interface IMenuItemProps {
     menuList?: IMenuModel[]; // Optional menu list if already passed via props

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {IMenuModel, MenuList} from "../../../05_features/Menu";
 import axios from "axios";
-import {CategoryList} from "../../../05_features/CategoryList";
+import {CategoryList} from "../../../05_features/Category";
 
 const MenuWithCategories: React.FC = () => {
     const [menus, setMenus] = useState<IMenuModel[]>([]);
@@ -29,7 +29,7 @@ const MenuWithCategories: React.FC = () => {
     }
 
     if (error) {
-        return <p>{error}</p>; // Выводим сообщение об ошибке
+        return <p>{error}</p>;
     }
 
     return (
