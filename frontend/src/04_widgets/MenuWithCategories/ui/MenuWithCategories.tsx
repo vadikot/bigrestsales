@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {IMenuModel, MenuList} from "../../../06_entities/Menu";
+import {IMenuModel, MenuList} from "../../../05_features/Menu";
 import axios from "axios";
-import {CategoryList} from "../../../06_entities/CategoryList";
+import {CategoryList} from "../../../05_features/CategoryList";
 
 const MenuWithCategories: React.FC = () => {
     const [menus, setMenus] = useState<IMenuModel[]>([]);
@@ -34,7 +34,7 @@ const MenuWithCategories: React.FC = () => {
 
     return (
         <div>
-            <MenuList menusPropsValue={menus}/>
+            <MenuList menuList={menus}/>
             {menus.length > 0 && <CategoryList menuId={menus[1]._id}/>}
         </div>
     );

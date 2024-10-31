@@ -1,5 +1,6 @@
 import React from "react";
 import {MenuWithCategories} from "../04_widgets/MenuWithCategories";
+import './styles/global.scss';
 
 export const App: React.FC = () => {
 
