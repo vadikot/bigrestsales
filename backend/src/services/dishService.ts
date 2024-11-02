@@ -21,6 +21,21 @@ class DishService {
             throw new Error('Could not add dish: ' + (e as Error).message);
         }
     }
+
+    async addMultipleDishes(dishesArr: IDishModel[], categoryId: string) {
+        try {
+            const multipleDishesArr = dishesArr.map(dish => {
+                return {
+                    ...dish,
+                    category_id: categoryId,
+                }
+            });
+
+            return DishModel.insertMany(multipleDishesArr);
+        } catch (e) {
+            throw new Error('Could not add dishes: ' + (e as Error).message);
+        }
+    }
 }
 
 export const dishService = new DishService();

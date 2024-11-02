@@ -25,7 +25,7 @@ router.post('/add', async (req: Request, res: Response) => {
         const {categoryId} = req.query;
 
         if (!isMongoIdValid(categoryId)) {
-            res.status(400).json({message: 'Invalid or missing "menuId"'});
+            res.status(400).json({message: 'Invalid or missing "categoryId"'});
             return;
         }
 
@@ -40,9 +40,37 @@ router.post('/add', async (req: Request, res: Response) => {
 
         res.json(newCategory);
     } catch (e) {
-        res.status(500).json({message: 'Error add new category', e})
+        res.status(500).json({message: 'Error add new dish', e})
     }
-})
-// router.post('/add-multiple',(req: Request, res: Response)=>{})
+});
+
+router.post('/add-multiple', async (req: Request, res: Response) => {
+    try {
+        const {dishesArr, categoryId} = req.body;
+
+        if (!isMongoIdValid(categoryId)) {
+            res.status(400).json({message: 'Invalid or missing "categoryId"'});
+            return;
+        }
+
+        const newCategories = await dishService.addMultipleDishes(dishesArr, categoryId);
+
+        res.json(newCategories);
+    } catch (e) {
+        res.status(500).json({message: 'Error add new dish', e})
+    }
+});
+
+
+// router.post('/add-multiple', async (req: Request, res: Response) => {
+//     try {
+//         const {dishesArr} = req.body;
+//         const newCategories = await dishService.addMultipleDishes(dishesArr);
+//
+//         res.json(newCategories);
+//     } catch (e) {
+//         res.status(500).json({message: 'Error add new categories', e})
+//     }
+// });
 
 export {router as dishesRouter}
