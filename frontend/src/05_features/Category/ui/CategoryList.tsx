@@ -1,25 +1,11 @@
-import React, {FC, useEffect, useState} from 'react';
+import React from 'react';
 import {ICategoryModel} from "../model/CategoryModel";
-import axios from "axios";
-
 
 interface ICategoryListProps {
-    menuId: string;
+    categories: ICategoryModel[];
 }
 
-const CategoryList: FC<ICategoryListProps> = ({menuId}) => {
-    const [categories, setCategories] = useState<ICategoryModel[]>([]);
-
-    useEffect(() => {
-        axios.get<ICategoryModel[]>('api/category/all', {
-            params: {
-                menuId,
-            }
-        })
-            .then(response => setCategories(response.data))
-            .catch(e => console.log(e.message));
-
-    }, [menuId]);
+const CategoryList: React.FC<ICategoryListProps> = ({categories}) => {
 
     return (
         <div>

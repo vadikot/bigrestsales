@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {IMenuModel} from "../../model/MenuModel";
-import {CategoryList} from "../../../Category";
+import {IMenuModel} from "../model/MenuModel";
+import {CategoryContainer, CategoryList} from "../../Category";
 
 interface IMenuItemProps {
     menuList?: IMenuModel[]; // Optional menu list if already passed via props
@@ -66,7 +66,12 @@ const MenuList: React.FC<IMenuItemProps> = ({menuList}) => {
                                     </button>
                                     <ul className={categoryVisibility[menu._id] ? 'category-list-hidden' : ""}>
                                         {
-                                            !categoryVisibility[menu._id] && (<CategoryList menuId={menu._id}/>)
+                                            !categoryVisibility[menu._id] && (
+                                                <CategoryContainer menuId={menu._id}
+                                                                   render={(categories) => <CategoryList categories={categories}
+                                                                   />}
+                                                />
+                                            )
                                         }
                                     </ul>
                                 </li>

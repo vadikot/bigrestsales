@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {IMenuModel, MenuList} from "../../../05_features/Menu";
 import axios from "axios";
-import {CategoryList} from "../../../05_features/Category";
+import {CategoryContainer, CategoryList} from "../../../05_features/Category";
 
 const MenuWithCategories: React.FC = () => {
     const [menus, setMenus] = useState<IMenuModel[]>([]);
@@ -35,7 +35,13 @@ const MenuWithCategories: React.FC = () => {
     return (
         <div>
             <MenuList menuList={menus}/>
-            {menus.length > 0 && <CategoryList menuId={menus[1]._id}/>}
+            {
+                menus.length > 0
+                && <CategoryContainer menuId={menus[0]._id}
+                                      render={(categories) => <CategoryList categories={categories}
+                                      />}
+                />
+            }
         </div>
     );
 };
