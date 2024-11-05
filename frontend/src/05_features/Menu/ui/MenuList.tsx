@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {IMenuModel} from "../model/MenuModel";
 import {CategoryContainer, CategoryList} from "../../Category";
+import {fetchMenus} from "../api/menuApi";
 
 interface IMenuItemProps {
     menuList?: IMenuModel[]; // Optional menu list if already passed via props
@@ -30,12 +31,12 @@ const MenuList: React.FC<IMenuItemProps> = ({menuList}) => {
         if (menuList) {
             initializeCategoryVisibility();
         } else {
-            axios.get<IMenuModel[]>('/api/menu/all')
-                .then(response => {
-                    setMenus(response.data);
+            fetchMenus()
+                .then(data => {
+                    setMenus(data);
                     initializeCategoryVisibility()
                 })
-                .catch(error => setError(error.message || 'Error loading menu from database'));
+                .catch(error => setError('Error loading menu from database:' + error.message));
         }
 
     }, [menuList]);

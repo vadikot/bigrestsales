@@ -9,21 +9,21 @@ interface ICategoryContainerProps {
 
 const CategoryContainer: React.FC<ICategoryContainerProps> = ({menuId, render}) => {
     const [categories, setCategories] = useState<ICategoryModel[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        setLoading(true);
+        setIsLoading(true);
         fetchCategories(menuId)
             .then(response => {
                 setCategories(response)
             })
             .catch(e => setError(e.message))
-            .then(() => setLoading(false));
+            .then(() => setIsLoading(false));
 
     }, [menuId]);
 
-    if (loading) return <p>Loading categories...</p>;
+    if (isLoading) return <p>Loading categories...</p>;
     if (error) return <p>Error loading categories: {error}</p>;
 
     return (<>{render(categories)}</>);
