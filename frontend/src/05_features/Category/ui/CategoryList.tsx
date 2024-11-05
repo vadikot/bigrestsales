@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import {ICategoryModel} from "../../model/CategoryModel";
+import {ICategoryModel} from "../model/CategoryModel";
 import axios from "axios";
 
 
