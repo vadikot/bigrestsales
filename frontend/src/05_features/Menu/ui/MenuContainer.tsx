@@ -15,7 +15,7 @@ const MenuContainer: React.FC<IMenuContainerProps> = ({render}) => {
         setIsLoading(true);
         fetchMenus()
             .then(data => setMenus(data))
-            .catch(e => setError(e.message))
+            .catch(e => setError('Error loading menu from database:' + e.message))
             .then(() => setIsLoading(false));
     }, []);
 

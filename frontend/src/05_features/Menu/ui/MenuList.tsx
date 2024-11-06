@@ -5,17 +5,15 @@ import {CategoryContainer, CategoryList} from "../../Category";
 import {fetchMenus} from "../api/menuApi";
 
 interface IMenuItemProps {
-    menuList?: IMenuModel[]; // Optional menu list if already passed via props
+    menus: IMenuModel[];
 }
 
 type TMenuVisibility = {
     [menuId: string]: boolean;
 }
 
-const MenuList: React.FC<IMenuItemProps> = ({menuList}) => {
-    const [menus, setMenus] = useState<IMenuModel[]>(menuList || []);
+const MenuList: React.FC<IMenuItemProps> = ({menus}) => {
     const [categoryVisibility, setCategoryVisibility] = useState<TMenuVisibility>({});
-    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const initializeCategoryVisibility = () => {
@@ -28,18 +26,9 @@ const MenuList: React.FC<IMenuItemProps> = ({menuList}) => {
             setCategoryVisibility(initialVisibility);
         }
 
-        if (menuList) {
-            initializeCategoryVisibility();
-        } else {
-            fetchMenus()
-                .then(data => {
-                    setMenus(data);
-                    initializeCategoryVisibility()
-                })
-                .catch(error => setError('Error loading menu from database:' + error.message));
-        }
+        initializeCategoryVisibility();
 
-    }, [menuList]);
+    }, [menus]);
 
     const toggleShowCategoryButton = (menuId: string): void => {
         setCategoryVisibility(prevState => ({
@@ -51,12 +40,10 @@ const MenuList: React.FC<IMenuItemProps> = ({menuList}) => {
     return (
         <div>
             <h2>Menu list:</h2>
-            <ul>
-                {
-                    error
-                        ? (
-                            <p>{error}</p>
-                        ) : (
+            {
+                menus.length > 0
+                    ? <ul>
+                        {
                             menus.map(menu => (
                                 <li key={menu._id}>
                                     {menu.name}
@@ -77,10 +64,12 @@ const MenuList: React.FC<IMenuItemProps> = ({menuList}) => {
                                     </ul>
                                 </li>
                             ))
-                        )}
-            </ul>
+                        }
+                    </ul>
+                    : <p>There are no menus</p>
+            }
         </div>
     );
-};
+}
 
 export default MenuList;

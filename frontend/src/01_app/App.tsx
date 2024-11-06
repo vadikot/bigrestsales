@@ -36,6 +36,10 @@ export const App: React.FC = () => {
                                     onCategorySelect={(category) => handleSelectedCategory(category)}/>
                 )}/>
             }
+
+            <p>------------------------------------------------------------------</p>
+
+            <MenuContainer render={(menus) => <MenuList menus={menus}/>}/>
             {/*<h3>Dishes for {selectedCategory?.name} category</h3>*/}
             {/*<DishList categoryId={selectedCategory?._id}/>*/}
         </div>
