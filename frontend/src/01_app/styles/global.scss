@@ -1,9 +1,29 @@
-.category-list-hidden {
-  display: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input,
+button,
+textarea,
+select {
+  margin: 0;
+
+  font: inherit;
 }
 
 h1, h2 {
   margin: 20px auto;
   text-align: center;
   text-decoration: underline;
+}
+
+.page-content {
+  display: flex;
+  justify-content: center;
+}
+
+.category-list-hidden {
+  display: none;
 }

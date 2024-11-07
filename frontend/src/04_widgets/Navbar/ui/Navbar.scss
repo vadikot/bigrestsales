@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  background-color: #222;
+  border-color: #080808;
+}
+
+.navbar-header {
+  padding: 20px;
+  color: #9d9d9d;
+  cursor: default;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.navbar-link {
+  padding: 20px;
+  color: #9d9d9d;
+  text-decoration: none;
+
+  &.active {
+    background: #000;
+    color: #fff;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: #fff;
+  }
+}
