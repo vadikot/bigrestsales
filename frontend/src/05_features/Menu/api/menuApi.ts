@@ -15,3 +15,9 @@ export const addMenu = async (name: string, userId: string = '1'): Promise<Axios
 
     return response;
 }
+
+export const deleteMenuById = async (id: string): Promise<AxiosResponse<any>> => {
+    const response: AxiosResponse = await axios.delete(`/api/menu/${id}`);
+
+    return response;
+}

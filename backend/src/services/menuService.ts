@@ -21,6 +21,14 @@ class MenuService {
             throw new Error('Could not add menu: ' + (e as Error).message);
         }
     }
+
+    async deleteMenu(id: string) {
+        try {
+            return MenuModel.findOneAndDelete({_id: id});
+        } catch (e) {
+            throw new Error('Could find or delete menu: ' + (e as Error).message);
+        }
+    }
 }
 
 const menuService = new MenuService();

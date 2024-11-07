@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
 import {IMenuModel} from "../model/MenuModel";
 import {CategoryContainer, CategoryList} from "../../Category";
-import {fetchMenus} from "../api/menuApi";
 
 interface IMenuItemProps {
     menus: IMenuModel[];
+    onDeleteMenu: (id: string) => void;
 }
 
 type TMenuVisibility = {
     [menuId: string]: boolean;
 }
 
-const MenuList: React.FC<IMenuItemProps> = ({menus}) => {
+const MenuList: React.FC<IMenuItemProps> = ({menus, onDeleteMenu}) => {
     const [categoryVisibility, setCategoryVisibility] = useState<TMenuVisibility>({});
 
     useEffect(() => {
@@ -48,7 +47,7 @@ const MenuList: React.FC<IMenuItemProps> = ({menus}) => {
                                 <li key={menu._id}>
                                     {menu.name}
                                     <button disabled>edit</button>
-                                    <button disabled>delete</button>
+                                    <button onClick={() => onDeleteMenu(menu._id)}>delete</button>
                                     <button
                                         onClick={() => toggleShowCategoryButton(menu._id)}>{categoryVisibility[menu._id] ? 'Show' : 'Hide'} categories
                                     </button>

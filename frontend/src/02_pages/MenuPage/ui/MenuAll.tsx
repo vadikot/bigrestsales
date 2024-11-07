@@ -1,9 +1,12 @@
 import React from 'react';
+import {MenuContainer, MenuList} from "../../../05_features/Menu";
 
 const MenuAll = () => {
     return (
         <div>
-            <h2>Menu All page</h2>
+            <MenuContainer render={(menus, handleDeleteMenu) => (
+                <MenuList menus={menus} onDeleteMenu={handleDeleteMenu}/>
+            )}/>
         </div>
     );
 };

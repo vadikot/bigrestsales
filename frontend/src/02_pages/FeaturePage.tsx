@@ -36,7 +36,9 @@ const FeaturePage = () => {
 
             <p>------------------------------------------------------------------</p>
 
-            <MenuContainer render={(menus) => <MenuList menus={menus}/>}/>
+            <MenuContainer render={(menus, handleDeleteMenu) => (
+                <MenuList menus={menus} onDeleteMenu={handleDeleteMenu}/>
+            )}/>
             {/*<h3>Dishes for {selectedCategory?.name} category</h3>*/}
             {/*<DishList categoryId={selectedCategory?._id}/>*/}
         </div>
