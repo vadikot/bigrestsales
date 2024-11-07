@@ -1,0 +1,28 @@
+
+.menuAddForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    width: 350px;
+    padding: 5px;
+    margin: 0 10px;
+    font-size: 18px;
+  }
+}
+
+.menuAddForm-wrap {}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.menuAddForm-btn {
+  padding: 5px;
+}

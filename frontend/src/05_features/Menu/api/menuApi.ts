@@ -6,3 +6,12 @@ export const fetchMenus = async (): Promise<IMenuModel[]> => {
 
     return response.data;
 }
+
+export const addMenu = async (name: string, userId: string = '1'): Promise<AxiosResponse<any>> => {
+    const response: AxiosResponse = await axios.post('/api/menu/add', {
+        name,
+        userId,
+    });
+
+    return response;
+}
