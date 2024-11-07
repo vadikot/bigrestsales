@@ -47,6 +47,7 @@ module.exports = (env) => {
         ],
         devServer: {
             static: path.join(__dirname, 'dist'),
+            historyApiFallback: true,
             port,
             proxy: [
                 {
