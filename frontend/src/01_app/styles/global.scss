@@ -27,3 +27,16 @@ h1, h2 {
 .category-list-hidden {
   display: none;
 }
+
+.app {
+  min-height: 100vh;
+}
+
+.page-content {
+  display: flex;
+}
+
+.content-wrap {
+  flex-grow: 1;
+  padding: 20px;
+}

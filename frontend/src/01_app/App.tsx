@@ -2,6 +2,7 @@ import React from "react";
 import './styles/global.scss';
 import {AppRouter} from "./router";
 import {Navbar} from "../04_widgets/Navbar";
+import {Sidebar} from "../04_widgets/Sidebar";
 
 
 export const App: React.FC = () => {
@@ -10,7 +11,7 @@ export const App: React.FC = () => {
         <div id={"app"}>
             <Navbar/>
             <div className={'page-content'}>
-                {/*<Sidebar/>*/}
+                <Sidebar/>
                 <AppRouter/>
             </div>
         </div>

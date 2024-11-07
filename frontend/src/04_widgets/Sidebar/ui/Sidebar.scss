@@ -1,0 +1,38 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  width: 300px;
+  height: calc(100vh - 64px);
+  background: #222;
+  color: #9d9d9d;
+
+  position: relative;
+  transition: 0.3s;
+}
+
+.sidebar-list {
+  list-style: none;
+  width: 100%;
+
+  li {
+    width: 100%;
+    border-bottom: 1px solid black;
+
+    &:first-child {
+      border-top: 1px solid black;
+    }
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px;
+    width: 100%;
+  }
+}
+
+.collapsed {
+  width: 100px;
+}
