@@ -2,28 +2,46 @@ import React, {useEffect, useState} from 'react';
 import './Sidebar.scss'
 import {NavLink, useLocation} from "react-router-dom";
 
-interface IMenuLink {
+interface ILink {
     name: string;
     path: string;
 }
 
+enum LinkType {
+    menu = 'menu',
+    category = "category",
+}
+
 const Sidebar = () => {
-    const [isMenuPage, setIsMenuPage] = useState<boolean>(false);
-    const [menuLinks, setMenuLinks] = useState<IMenuLink[]>([]);
+    const [links, setLinks] = useState<ILink[]>([]);
 
     const location = useLocation();
 
     useEffect(() => {
-        const isMenu = location.pathname.includes('menu');
-        setIsMenuPage(isMenu);
+        let currentPageType: LinkType | null = null;
 
-        if (isMenu) {
-            setMenuLinks([
-                {name: 'Show all', path: 'all'},
-                {name: 'Add new', path: 'add'}
-            ]);
-        } else {
-            setMenuLinks([]);
+        if (location.pathname.includes(LinkType.menu)) {
+            currentPageType = LinkType.menu;
+        } else if (location.pathname.includes(LinkType.category)) {
+            currentPageType = LinkType.category;
+        }
+
+        switch (currentPageType) {
+            case LinkType.menu:
+                setLinks([
+                    {name: 'Show all', path: 'all'},
+                    {name: 'Add new', path: 'add'}
+                ]);
+                break;
+            case LinkType.category:
+                setLinks([
+                    {name: 'Show all', path: 'all'},
+                    {name: 'Add new', path: 'add'},
+                    {name: 'test', path: 'test'},
+                ]);
+                break;
+            default:
+                setLinks([]);
         }
     }, [location.pathname])
 
@@ -32,11 +50,11 @@ const Sidebar = () => {
             <h4>sidebar</h4>
             <br/>
             {
-                isMenuPage && (
+                links.length > 0 && (
                     <ul className={"sidebar-list"}>
                         {
-                            menuLinks.map(linkMenu => (<li key={linkMenu.path}><NavLink className={'navbar-link'}
-                                                                                        to={'/menu/' + linkMenu.path}>{linkMenu.name}</NavLink>
+                            links.map(link => (<li key={link.path}><NavLink className={'navbar-link'}
+                                                                            to={`/${location.pathname.split('/')[1]}/` + link.path}>{link.name}</NavLink>
                             </li>))
                         }
                     </ul>

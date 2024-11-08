@@ -1,6 +1,16 @@
 import React, {Suspense} from 'react';
 import {Route, Routes} from "react-router-dom";
-import {AboutPage, CategoryPage, FeaturePage, HomePage, MenuAdd, MenuAll, MenuPage, TestsPage} from "../../../02_pages";
+import {
+    AboutPage,
+    CategoryAdd, CategoryAll,
+    CategoryPage,
+    FeaturePage,
+    HomePage,
+    MenuAdd,
+    MenuAll,
+    MenuPage,
+    TestsPage
+} from "../../../02_pages";
 
 const AppRouter = () => {
     return (
@@ -12,7 +22,10 @@ const AppRouter = () => {
                         <Route path="all" element={<MenuAll/>}/>
                         <Route path="add" element={<MenuAdd/>}/>
                     </Route>
-                    <Route path="/category" element={<CategoryPage/>}/>
+                    <Route path="/category" element={<CategoryPage/>}>
+                        <Route path="all" element={<CategoryAll/>}/>
+                        <Route path="add" element={<CategoryAdd/>}/>
+                    </Route>
                     <Route path="/tests" element={<TestsPage/>}/>
                     <Route path="/about" element={<AboutPage/>}/>
                     <Route path="/features" element={<FeaturePage/>}/>
