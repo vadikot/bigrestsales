@@ -1,0 +1,1 @@
+export const cleanAndSplitCategoryNames = (categoryString: string): string[] => categoryString.replace(/\s+/g, '').split(',');

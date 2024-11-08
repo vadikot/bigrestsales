@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import axios from "axios";
+import {addMultipleCategoriesToMenu} from "../api/categoryApi";
 
 interface ICategoryFormProps {
     menuId: string;
@@ -10,31 +10,23 @@ const CategoryForm: React.FC<ICategoryFormProps> = ({menuId}) => {
     const [error, setError] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-
-    const cleanAndSplitCategoryNames = (categoryString: string): string[] => categoryString.replace(/\s+/g, '').split(',');
     const handleAddCategoriesClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
         if (categoryInput.length === 0) {
             setError('Category field cannot be empty, please fill the form');
+            setSuccessMessage(null);
             return;
         }
 
-        const splitCategoryNames = cleanAndSplitCategoryNames(categoryInput);
-
-        axios.post('api/category/add-multiple',
-            {
-                namesArr: splitCategoryNames, // backend expects array of strings
-                menuId
-            })
+        addMultipleCategoriesToMenu(menuId, categoryInput)
             .then(response => {
-                setSuccessMessage('Categories successfully added')
+                setSuccessMessage('Categories successfully added');
                 setError(null);
                 setCategoryInput('');
             })
             .catch(error => {
                 setError('Error adding new categories to DB: ' + error.message)
-                setSuccessMessage(null);
             })
     }
 
