@@ -8,3 +8,18 @@ export const fetchDishes = async (categoryId: string): Promise<IDishModel[]> => 
 
     return response.data;
 }
+
+export const addDishToCategory = async (categoryId: string, dish: { name: string, ingredients: string }): Promise<AxiosResponse<any>> => {
+    const response = await axios.post('/api/dish/add',
+        {
+            ...dish,
+            categoryId,
+        },
+        {
+            params: {
+                categoryId,
+            }
+        })
+
+    return response.data;
+};

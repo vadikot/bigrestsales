@@ -3,7 +3,7 @@ import {Route, Routes} from "react-router-dom";
 import {
     AboutPage,
     CategoryAdd, CategoryAll,
-    CategoryPage,
+    CategoryPage, DishAdd, DishAll, DishPage,
     FeaturePage,
     HomePage,
     MenuAdd,
@@ -25,6 +25,10 @@ const AppRouter = () => {
                     <Route path="/category" element={<CategoryPage/>}>
                         <Route path="all" element={<CategoryAll/>}/>
                         <Route path="add" element={<CategoryAdd/>}/>
+                    </Route>
+                    <Route path="/dish" element={<DishPage/>}>
+                        <Route path="all" element={<DishAll/>}/>
+                        <Route path="add" element={<DishAdd/>}/>
                     </Route>
                     <Route path="/tests" element={<TestsPage/>}/>
                     <Route path="/about" element={<AboutPage/>}/>

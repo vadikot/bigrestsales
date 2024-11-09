@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {ICategoryModel} from "../model/CategoryModel";
+import {Link} from "react-router-dom";
 
 interface ICategoryListProps {
     categories: ICategoryModel[];
@@ -15,10 +16,13 @@ const CategorySelect: React.FC<ICategoryListProps> = ({categories, onCategorySel
         }
     }, []);
 
+    if (categories.length === 0) return (
+        <p><b>There are no categories in this menu, you need to add them first. <Link to={'/category/add'}>Add
+            category</Link></b></p>);
+
     return (
         <div>
             <label htmlFor={'categories'}>Choose a category:</label>
-
             <select
                 defaultValue={defaultValue}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {

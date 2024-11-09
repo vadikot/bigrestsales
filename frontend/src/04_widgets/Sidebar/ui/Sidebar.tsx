@@ -10,6 +10,7 @@ interface ILink {
 enum LinkType {
     menu = 'menu',
     category = "category",
+    dish = "dish",
 }
 
 const Sidebar = () => {
@@ -24,6 +25,8 @@ const Sidebar = () => {
             currentPageType = LinkType.menu;
         } else if (location.pathname.includes(LinkType.category)) {
             currentPageType = LinkType.category;
+        } else if (location.pathname.includes(LinkType.dish)) {
+            currentPageType = LinkType.dish;
         }
 
         switch (currentPageType) {
@@ -38,6 +41,13 @@ const Sidebar = () => {
                     {name: 'Show all', path: 'all'},
                     {name: 'Add new', path: 'add'},
                     {name: 'test', path: 'test'},
+                ]);
+                break;
+            case LinkType.dish:
+                setLinks([
+                    {name: 'Show all', path: 'all'},
+                    {name: 'Add new', path: 'add'},
+                    {name: 'dish test', path: 'test'},
                 ]);
                 break;
             default:
