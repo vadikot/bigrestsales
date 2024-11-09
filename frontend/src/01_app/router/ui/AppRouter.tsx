@@ -2,8 +2,12 @@ import React, {Suspense} from 'react';
 import {Route, Routes} from "react-router-dom";
 import {
     AboutPage,
-    CategoryAdd, CategoryAll,
-    CategoryPage, DishAdd, DishAll, DishPage,
+    CategoryAdd,
+    CategoryAll,
+    CategoryPage,
+    DishAdd,
+    DishAll,
+    DishPage,
     FeaturePage,
     HomePage,
     MenuAdd,
@@ -11,6 +15,7 @@ import {
     MenuPage,
     TestsPage
 } from "../../../02_pages";
+import {DishAddFormType} from "../../../02_pages/DishPage/ui/DishAdd";
 
 const AppRouter = () => {
     return (
@@ -28,7 +33,8 @@ const AppRouter = () => {
                     </Route>
                     <Route path="/dish" element={<DishPage/>}>
                         <Route path="all" element={<DishAll/>}/>
-                        <Route path="add" element={<DishAdd/>}/>
+                        <Route path="add" element={<DishAdd formType={DishAddFormType.single}/>}/>
+                        <Route path="add-multiple" element={<DishAdd formType={DishAddFormType.multiple}/>}/>
                     </Route>
                     <Route path="/tests" element={<TestsPage/>}/>
                     <Route path="/about" element={<AboutPage/>}/>

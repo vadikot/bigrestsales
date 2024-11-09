@@ -47,7 +47,7 @@ const Sidebar = () => {
                 setLinks([
                     {name: 'Show all', path: 'all'},
                     {name: 'Add new', path: 'add'},
-                    {name: 'dish test', path: 'test'},
+                    {name: 'Add-multiple', path: 'add-multiple'},
                 ]);
                 break;
             default:

@@ -8,3 +8,8 @@ export interface IDishModel {
     price?: number;
     category_id: string;
 }
+
+export interface IDishFormPostType {
+    name: string;
+    ingredients: string;
+}

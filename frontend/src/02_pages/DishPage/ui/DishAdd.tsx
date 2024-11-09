@@ -2,8 +2,18 @@ import React, {useState} from 'react';
 import {IMenuModel, MenuContainer, MenuSelect} from "../../../05_features/Menu";
 import {CategoryContainer, CategorySelect, ICategoryModel} from "../../../05_features/Category";
 import {DishForm} from "../../../05_features/Dish";
+import DishFormMultiple from "../../../05_features/Dish/ui/DishFormMultiple";
 
-const DishAdd = () => {
+export enum DishAddFormType {
+    single = 'single',
+    multiple = 'multiple',
+}
+
+interface DishAddProps {
+    formType: DishAddFormType;
+}
+
+const DishAdd: React.FC<DishAddProps> = ({formType}) => {
     const [selectedMenu, setSelectedMenu] = useState<IMenuModel | null>(null);
     const [selectedCategory, setSelectedCategory] = useState<ICategoryModel | null>(null);
 
@@ -23,7 +33,11 @@ const DishAdd = () => {
             }
             {
                 selectedCategory && (
-                    <DishForm categoryId={selectedCategory._id}/>
+
+                    (formType === DishAddFormType.single)
+                        ? (<DishForm categoryId={selectedCategory._id}/>)
+                        : (<DishFormMultiple categoryId={selectedCategory._id}/>)
+
                 )
             }
         </div>

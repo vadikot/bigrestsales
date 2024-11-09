@@ -1,13 +1,9 @@
 import React, {useState} from 'react';
 import {addDishToCategory} from "../api/dishApi";
+import {IDishFormPostType} from "../model/DishModel";
 
 interface IDishFormProps {
     categoryId: string;
-}
-
-interface IDishFormType {
-    name: string;
-    ingredients: string;
 }
 
 const dishInitialValue = {
@@ -16,7 +12,7 @@ const dishInitialValue = {
 }
 
 const DishForm: React.FC<IDishFormProps> = ({categoryId}) => {
-    const [dish, setDish] = useState<IDishFormType>(dishInitialValue);
+    const [dish, setDish] = useState<IDishFormPostType>(dishInitialValue);
     const [error, setError] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
